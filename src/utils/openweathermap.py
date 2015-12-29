@@ -16,9 +16,9 @@ def weather(location):
     temp_max = round(w.get_temperature(config.owm_unit)['temp_max'], 1)
     humidity = w.get_humidity()
     detail = capwords(w.get_detailed_status())
-    loc = obs.get_location().get_name()
+    loc = obs.get_location().get_name() + ', ' + obs.get_location().get_country()
     obs_time = datetime.fromtimestamp(w.get_reference_time(timeformat='unix')).strftime('%a %d')
-    msg = u'Tempo para "%s": %s, temperatura de %sº, mínima de %sº, máxima de %sº e humidade de %s%%.' \
+    msg = u'Tempo para "%s":\n\n%s, temperatura de %sº, mínima de %sº, máxima de %sº e humidade de %s%%.' \
           % (loc, detail, temp, temp_min, temp_max, humidity)
     return msg.encode('utf-8')
 
@@ -29,7 +29,7 @@ def forecast(location):
 
     if fc:
         f = fc.get_forecast()
-        loc = f.get_location().get_name()
+        loc = f.get_location().get_name() + ', ' + f.get_location().get_country()
         weathers = f.get_weathers()
         title = u'Previsão do tempo para "%s":\n' % loc
 
