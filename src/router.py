@@ -14,6 +14,7 @@ from views.media import MediaViews
 from views.super_views import SuperViews
 from views.group_admin import GroupAdminViews
 from views.google import GoogleViews
+from views.weather import WeatherViews
 
 
 # Basic regex routes
@@ -45,6 +46,9 @@ class RouteLayer(YowInterfaceLayer):
         # read the issue on: https://github.com/joaoricardo000/whatsapp-bot-seed/issues/4
         # enable on your own risk!
         # routes.extend(GroupAdminViews(self).routes)
+
+        # Weather views
+        routes.extend(WeatherViews(self).routes)
 
         self.views = [(re.compile(pattern), callback) for pattern, callback in routes]
 

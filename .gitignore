@@ -3,5 +3,5 @@
 venv/
 .*
 .idea
-opt/set_auth.sh
+auth.conf
 media/*

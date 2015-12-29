@@ -171,7 +171,7 @@ class UrlPrintSender(ImageSender):
         file_path = self._build_file_path(page_url)
         file_name = os.path.splitext(os.path.basename(file_path))[0]
         if not os.path.isfile(file_path):
-            cmd = 'pageres "%s" 1024x2300 --crop  --filename=%s' % (page_url, file_name)
+            cmd = 'pageres "%s" %s --filename=%s' % (page_url, config.pageres_params, file_name)
             logging.info(cmd)
             p = subprocess.Popen(cmd, shell=True, cwd=self.storage_path)
             p.wait()

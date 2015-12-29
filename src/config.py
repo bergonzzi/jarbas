@@ -51,12 +51,29 @@ except KeyError:
 filter_groups = False
 admins = ['XXXXXXXXXXXX', ]
 
+# Prefix required to invoke bot commands
+# This is automatically added to every route
+cmd_prefix = "/"
+
 # Path to download the media requests
 # (audio recordings, printscreens, media and youtube videos)
 media_storage_path = os.path.abspath(os.path.join(os.path.dirname( __file__ ), '..', 'media/')) + '/'
+
+# API settings for openweathermap
+try:
+    owm_api_key = os.environ['OPENWEATHER_API_KEY']
+except KeyError:
+    sys.exit('Missing environment variables OPENWEATHER_API_KEY!')
+
+owm_lang = 'pt'
+owm_unit = 'celsius'
+
+# Pageres settings for website screenshots
+pageres_params = '1440x1800 --crop'
 
 # Logging configuration.
 # By default only logs the command messages.
 # If logging_level set to logging.DEBUG, yowsup will log every protocoll message exchange with server.
 log_format = '_%(filename)s_\t[%(levelname)s][%(asctime)-15s] %(message)s'
 logging_level = logging.INFO
+
