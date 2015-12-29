@@ -163,7 +163,7 @@ class YoutubeSender(VideoSender):
 
 class UrlPrintSender(ImageSender):
     """
-        Uses wkhtmltoimage to printscreen a webpage
+        Uses pageres to printscreen a webpage
     """
 
     def _download_file(self, page_url):
@@ -172,6 +172,7 @@ class UrlPrintSender(ImageSender):
         file_name = os.path.splitext(os.path.basename(file_path))[0]
         if not os.path.isfile(file_path):
             cmd = 'pageres "%s" 1024x2300 --crop  --filename=%s' % (page_url, file_name)
+            logging.info(cmd)
             p = subprocess.Popen(cmd, shell=True, cwd=self.storage_path)
             p.wait()
         return file_path

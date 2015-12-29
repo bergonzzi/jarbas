@@ -2,3 +2,6 @@
 ./venv/
 venv/
 .*
+.idea
+opt/set_auth.sh
+media/*
