@@ -24,7 +24,7 @@ def weather(location):
 
 
 def forecast(location):
-    locale.setlocale(locale.LC_TIME, 'pt_PT')
+    locale.setlocale(locale.LC_TIME, 'pt_PT.UTF-8')
     fc = owm.daily_forecast(location, limit=5)
 
     if fc:
