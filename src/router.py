@@ -15,6 +15,7 @@ from views.super_views import SuperViews
 from views.group_admin import GroupAdminViews
 from views.google import GoogleViews
 from views.weather import WeatherViews
+from views.news import NewsViews
 
 
 # Basic regex routes
@@ -49,6 +50,9 @@ class RouteLayer(YowInterfaceLayer):
 
         # Weather views
         routes.extend(WeatherViews(self).routes)
+
+        # News views
+        routes.extend(NewsViews(self).routes)
 
         self.views = [(re.compile(pattern), callback) for pattern, callback in routes]
 
