@@ -3,8 +3,7 @@
 
     Handles the media url messages with utilities classes for it.
 """
-import urlparse
-from utils.media_sender import ImageSender, VideoSender, YoutubeSender, UrlPrintSender, GoogleTtsSender
+from utils.media_sender import ImageSender, VideoSender, UrlPrintSender
 
 
 class MediaViews():

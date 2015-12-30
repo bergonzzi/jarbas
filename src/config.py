@@ -53,7 +53,7 @@ admins = ['XXXXXXXXXXXX', ]
 
 # Prefix required to invoke bot commands
 # This is automatically added to every route
-cmd_prefix = "/"
+cmd_prefix = '/'
 
 # Path to download the media requests
 # (audio recordings, printscreens, media and youtube videos)
@@ -74,6 +74,6 @@ pageres_params = '1440x1800 --crop'
 # Logging configuration.
 # By default only logs the command messages.
 # If logging_level set to logging.DEBUG, yowsup will log every protocoll message exchange with server.
-log_format = '_%(filename)s_\t[%(levelname)s][%(asctime)-15s] %(message)s'
+log_format = '_%(filename)s_\t[%(levelname)s] [%(asctime)-15s] %(message)s'
 logging_level = logging.INFO
 

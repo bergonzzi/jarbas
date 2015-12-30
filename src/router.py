@@ -53,7 +53,7 @@ class RouteLayer(YowInterfaceLayer):
         self.views = [(re.compile(pattern), callback) for pattern, callback in routes]
 
     def route(self, message):
-        "Get the text from message and tests on every route for a match"
+        """Get the text from message and tests on every route for a match"""
         text = message.getBody()
         for route, callback in self.views:
             match = route.match(text)
@@ -64,7 +64,7 @@ class RouteLayer(YowInterfaceLayer):
     def handle_callback(self, callback, message, match):
         try:
             # log message request
-            if (message.isGroupMessage()):
+            if message.isGroupMessage():
                 logging.info("(GROUP)[%s]-[%s]\t%s" % (message.getParticipant(), message.getFrom(), message.getBody()))
             else:
                 logging.info("(PVT)[%s]\t%s" % (message.getFrom(), message.getBody()))
@@ -76,7 +76,7 @@ class RouteLayer(YowInterfaceLayer):
 
     @ProtocolEntityCallback("message")
     def on_message(self, message):
-        "Executes on every received message"
+        """Executes on every received message"""
         self.toLower(message.ack())  # Auto ack
         self.toLower(message.ack(True))  # Auto ack (double blue check symbol)
         # Routing only text type messages, for now ignoring other types. (media, audio, location...)
@@ -85,5 +85,5 @@ class RouteLayer(YowInterfaceLayer):
 
     @ProtocolEntityCallback("receipt")
     def on_receipt(self, entity):
-        "Auto ack for every message receipt confirmation"
+        """Auto ack for every message receipt confirmation"""
         self.toLower(entity.ack())

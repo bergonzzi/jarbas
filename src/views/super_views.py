@@ -1,17 +1,19 @@
+# -*- coding: utf-8 -*-
 from utils.media_sender import UrlPrintSender
 from yowsup.layers.protocol_messages.protocolentities.message_text import TextMessageProtocolEntity
 import random
+import config
 
 
-class SuperViews():
+class SuperViews(object):
     def __init__(self, interface_layer):
         self.interface_layer = interface_layer
         self.url_print_sender = UrlPrintSender(self.interface_layer)
         self.routes = [
-            ("^/help", self.help),
-            ("^/about", self.about),
-            ("^/roll", self.roll),
-            ("/(?P<evenOrOdd>even|odd)$", self.even_or_odd),
+            ("^" + config.cmd_prefix + "(?:help|ajuda)", self.help),
+            ("^" + config.cmd_prefix + "(?:about|sobre)", self.about),
+            ("^" + config.cmd_prefix + "(?:roll|dados)", self.roll),
+            ("^" + config.cmd_prefix + "(?P<evenOrOdd>even|odd)$", self.even_or_odd),
         ]
 
     def about(self, message=None, match=None, to=None):
@@ -34,21 +36,21 @@ class SuperViews():
 
 HELP_TEXT = """ [HELP]
 - Commands
-/help - Show this message.
-/about - About
-/s(earch) - I'm lucky!
-/i(mage) - I'm lucky with image!
-/t(ts) - Text to speech.
-/(even)(odd) - Amazing game.
-/ping - Pong.
-/echo - Echo.
-/roll - Roll a dice.
+/ajuda - Mostra esta mensagem
+/tempo [cidade] - Meteorologia
+/previsao [cidade] - Previsão do tempo
+/s(earch) [keyword] - Tira um screenshot do 1º resultado do Google
+/dados - Lança os dados
 
-Automatic:
-    - Url (http://...) print screen.
-    - Image (jpeg, gif, png) download.
-    - Videos (mp4, webm) downloads.
-    - Youtube videos.
+Funções automáticas:
+- Url (http://...) - Envia um screenshot do url
+- Url de imagem (jpeg, gif, png) - Envia a imagem
+- Url de video (mp4, webm, youtube) - Envia o video
+"""
+
+INACTIVE = """
+/i(mage) [keyword] - I'm lucky with image!
+/t(ts) - Text to speech.
 """
 
 ABOUT_TEXT = """ [Whatsapp Bot Seed]

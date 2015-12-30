@@ -7,7 +7,9 @@
 
 """
 from utils.media_sender import ImageSender, VideoSender, YoutubeSender, UrlPrintSender, GoogleTtsSender
-import requests, urllib
+import requests
+import urllib
+import config
 
 
 class GoogleViews():
@@ -18,11 +20,10 @@ class GoogleViews():
         self.url_print_sender = UrlPrintSender(interface_layer)
         self.google_tts_sender = GoogleTtsSender(interface_layer)
         self.routes = [
-            ("/y(outube)\s(https?:\/\/(?:www\.|m\.)?youtu(?:be.com\/watch\?v=|\.be/)(?P<video_id>[\w-]+)(&\S*)?)$",
-             self.send_yt_video),
-            ("/t(ts)?\s(?P<text>[^\[]{1,500})\s?\[?(?P<lang>[A-Za-z\-]{2,6})?\]?$", self.send_tts),
-            ("/s(earch)?\s(?P<term>[^$]+)$", self.google_search),
-            ("/i(mage)?\s(?P<term>[^$]+)$", self.google_image_search)
+            ("^" + config.cmd_prefix + "y(outube)\s(https?:\/\/(?:www\.|m\.)?youtu(?:be.com\/watch\?v=|\.be/)(?P<video_id>[\w-]+)(&\S*)?)$", self.send_yt_video),
+            ("^" + config.cmd_prefix + "t(ts)?\s(?P<text>[^\[]{1,500})\s?\[?(?P<lang>[A-Za-z\-]{2,6})?\]?$", self.send_tts),
+            ("^" + config.cmd_prefix + "s(earch)?\s(?P<term>[^$]+)$", self.google_search),
+            ("^" + config.cmd_prefix + "i(mage)?\s(?P<term>[^$]+)$", self.google_image_search)
         ]
 
     def send_yt_video(self, message, match):
