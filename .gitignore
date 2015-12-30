@@ -1,7 +1,3 @@
 *.pyc
-./venv/
-venv/
-.*
 .idea
 auth.conf
-media/*
