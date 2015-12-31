@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import os
 import sys
 import logging
@@ -35,6 +36,11 @@ import logging
 
 """
 
+# Logging configuration.
+# By default only logs the command messages.
+# If logging_level set to logging.DEBUG, yowsup will log every protocoll message exchange with server.
+log_format = '_%(filename)s_\t[%(levelname)s] [%(asctime)-15s] %(message)s'
+logging_level = logging.INFO
 
 # Authentication parameters are fetched from env variables
 # This avoid storing them in a file
@@ -71,9 +77,11 @@ owm_unit = 'celsius'
 # Pageres settings for website screenshots
 pageres_params = '1440x1800 --crop'
 
-# Logging configuration.
-# By default only logs the command messages.
-# If logging_level set to logging.DEBUG, yowsup will log every protocoll message exchange with server.
-log_format = '_%(filename)s_\t[%(levelname)s] [%(asctime)-15s] %(message)s'
-logging_level = logging.INFO
+# RSS feed for latest news
+news_sources = {
+    'Público': 'http://feeds.feedburner.com/PublicoRSS?format=xml',
+    'Jornal de Notícias': 'http://feeds.jn.pt/JN-ULTIMAS',
+    'O Jogo': 'http://feeds.ojogo.pt/OJ-Ultimas'
+}
+max_news = 10
 
