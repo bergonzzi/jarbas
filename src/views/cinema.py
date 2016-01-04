@@ -7,7 +7,6 @@ import config
 class CinemaViews(object):
     def __init__(self, interface_layer):
         self.routes = [
-            # Latest news
             ('^' + config.cmd_prefix + '(?:cinemas?|filmes)\s?(?P<cinema>[^$]+)$', self.get_movies)
         ]
 
