@@ -8,10 +8,10 @@ class WeatherViews(object):
     def __init__(self, interface_layer):
         self.routes = [
             # Current weather
-            ("^" + config.cmd_prefix + "tempo (?P<location>[^$]+)(\?)?$", self.get_weather),
+            ("^" + config.cmd_prefix + "(?:tempo|weather|meteorologia) (?P<location>[^$]+)(\?)?$", self.get_weather),
 
             # Weather forecast
-            ("^" + config.cmd_prefix + "previs(?:a|ã)o (?P<location>[^$]+)(\?)?$", self.get_forecast)
+            ("^" + config.cmd_prefix + "(?:previs(?:a|ã)o|forecast) (?P<location>[^$]+)(\?)?$", self.get_forecast)
         ]
 
     def get_weather(self, message, match):
