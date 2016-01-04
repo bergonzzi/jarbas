@@ -29,7 +29,7 @@ from pytube import YouTube
 from gtts import gTTS
 
 
-class MediaSender():
+class MediaSender(object):
     """
         This is a superclass that does the job of download/upload a media type.
         The classes bellow extends it and are used by the views.

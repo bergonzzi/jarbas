@@ -75,7 +75,7 @@ owm_lang = 'pt'
 owm_unit = 'celsius'
 
 # Pageres settings for website screenshots
-pageres_params = '1440x1800 --crop'
+pageres_params = '1440x1800 --no-crop'
 
 # RSS feed for latest news
 news_sources = {
@@ -84,4 +84,74 @@ news_sources = {
     'O Jogo': 'http://feeds.ojogo.pt/OJ-Ultimas'
 }
 max_news = 10
+
+# Cinema urls
+cinema_sources = {
+    'corte ingles': {
+        'url': 'http://mag.sapo.pt/cinema/salas/uci-cinemas-el-corte-ingles',
+        'name': 'UCI Cinemas - El Corte Inglés',
+        'synonyms':
+            ['uci', 'corte ingles', 'corte inglés']
+    },
+    'alegro': {
+        'url': 'http://mag.sapo.pt/cinema/salas/cinema-city-alegro-alfragide',
+        'name': 'Cinema City Alegro Alfragide',
+        'synonyms':
+            ['alegro', 'allegro']
+    },
+    'alvalade': {
+        'url': 'http://mag.sapo.pt/cinema/salas/cinema-city-alvalade',
+        'name': 'Cinema City Alvalade',
+        'synonyms':
+            ['alvalade']
+    },
+    'campo pequeno': {
+        'url': 'http://mag.sapo.pt/cinema/salas/cinema-city-campo-pequeno',
+        'name': 'Cinema City Campo Pequeno',
+        'synonyms':
+            ['campo pequeno', 'cp pequeno', 'campo peq', 'cp peq', 'cp. peq', 'cp. peq.', 'c peq', 'campo peq.']
+    },
+    'alvalaxia': {
+        'url': 'https://mag.sapo.pt/cinema/salas/cinemas-nos-alvalaxia',
+        'name': 'Cinema NOS Alvaláxia',
+        'synonyms':
+            ['alvalaxia', 'alvaláxia', 'sporting']
+    },
+    'amoreiras': {
+        'url': 'http://mag.sapo.pt/cinema/salas/cinemas-nos-amoreiras',
+        'name': 'Cinema NOS Amoreiras',
+        'synonyms':
+            ['amoreiras']
+    },
+    'colombo': {
+        'url': 'http://mag.sapo.pt/cinema/salas/cinemas-nos-colombo',
+        'name': 'Cinema NOS Colombo',
+        'synonyms':
+            ['colombo']
+    },
+    'miraflores': {
+        'url': 'http://mag.sapo.pt/cinema/salas/cinemas-nos-dolce-vita-miraflores',
+        'name': 'Cinema NOS Dolce Vita Miraflores',
+        'synonyms':
+            ['miraflores', 'dolce vita', 'dolce vitta']
+    },
+    'vasco da gama': {
+        'url': 'http://mag.sapo.pt/cinema/salas/cinemas-nos-vasco-da-gama',
+        'name': 'Cinema NOS Vasco da Gama',
+        'synonyms':
+            ['vasco da gama', 'vasco gama', 'v gama', 'v. gama']
+    },
+    'monumental': {
+        'url': 'http://mag.sapo.pt/cinema/salas/medeia-monumental',
+        'name': 'Medeia Monumental',
+        'synonyms':
+            ['monumental', 'residence', 'saldanha']
+    },
+    'oeiras parque': {
+        'url': 'http://mag.sapo.pt/cinema/salas/cinemas-nos-oeiras-parque',
+        'name': 'Cinema NOS Oeiras Parque',
+        'synonyms':
+            ['oeiras parque', 'oeiras', 'oeiras park']
+    }
+}
 

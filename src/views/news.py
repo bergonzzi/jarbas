@@ -9,15 +9,17 @@ class NewsViews(object):
     def __init__(self, interface_layer):
         self.routes = [
             # Latest news
-            ('^' + config.cmd_prefix + '(?:ultimas|últimas|noticias|notícias)\s?(?P<cat>[^$]+)?$', self.get_latest_news),
+            ('^' + config.cmd_prefix + '(?:ultimas|últimas|noticias|notícias|news)\s?(?P<cat>[^$]+)?$', self.get_latest_news),
         ]
 
     def get_latest_news(self, message, match):
         try:
             cat = match.group('cat').lower()
 
-            if cat in('desporto', 'sport'):
+            if cat in('desporto', 'sport', 'o jogo', 'ojogo', 'jogo'):
                 src = 'O Jogo'
+            elif cat in('jn', 'jornal de notícias', 'jornal de noticias', 'jornal noticias', 'jornal notícias'):
+                src = 'Jornal de Notícias'
             else:
                 src = 'Público'
         except AttributeError:
