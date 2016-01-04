@@ -97,7 +97,7 @@ cinema_sources = {
         'url': 'http://mag.sapo.pt/cinema/salas/cinema-city-alegro-alfragide',
         'name': 'Cinema City Alegro Alfragide',
         'synonyms':
-            ['alegro', 'allegro']
+            ['alegro', 'allegro', 'alfragide']
     },
     'alvalade': {
         'url': 'http://mag.sapo.pt/cinema/salas/cinema-city-alvalade',
