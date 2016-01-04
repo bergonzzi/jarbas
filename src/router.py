@@ -58,7 +58,7 @@ class RouteLayer(YowInterfaceLayer):
         # Cinema views
         routes.extend(CinemaViews(self).routes)
 
-        self.views = [(re.compile(pattern), callback) for pattern, callback in routes]
+        self.views = [(re.compile(pattern, re.IGNORECASE), callback) for pattern, callback in routes]
 
     def route(self, message):
         """Get the text from message and tests on every route for a match"""
