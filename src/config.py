@@ -61,6 +61,10 @@ admins = ['XXXXXXXXXXXX', ]
 # This is automatically added to every route
 cmd_prefix = '/'
 
+# Bot name
+# Used mainly for chat routes for more "natural" language handling
+bot_name = 'jarbas'
+
 # Path to download the media requests
 # (audio recordings, printscreens, media and youtube videos)
 media_storage_path = os.path.abspath(os.path.join(os.path.dirname( __file__ ), '..', 'media/')) + '/'
