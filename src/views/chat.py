@@ -1,12 +1,36 @@
 # -*- coding: utf-8 -*-
 from yowsup.layers.protocol_messages.protocolentities import TextMessageProtocolEntity
+import config
 
 
 class ChatViews(object):
     def __init__(self, interface_layer):
         self.routes = [
+            # Greetings
+            ('^(' + config.bot_name + ').*?(?:'
+             'ol(?:á|a)|'
+             'oi|'
+             'boas|'
+             'bom dia|'
+             'boa tarde|'
+             'boa(?:s)? noite(?:s)?|'
+             '(?:tudo|td) (b(?:e|o)m|fixe)|'
+             '(?:como|cm) vais'
+             ').*$', self.greet),
+
+            ('^(?:'
+             'ol(?:á|a)|'
+             'oi|'
+             'boas|'
+             'bom dia|'
+             'boa tarde|'
+             'boa(?:s)? noite(?:s)?|'
+             '(?:tudo|td) (b(?:e|o)m|fixe)|'
+             '(?:como|cm) vais'
+             ')(\s' + config.bot_name + ').*$', self.greet),
+
             # "Vai-te" offenses
-            ('^jarbas'
+            ('^' + config.bot_name +
              '.*?vai.*?(?:'
              'caralho|'
              'merda|'
@@ -16,7 +40,7 @@ class ChatViews(object):
              ').*$', self.go_to),
 
             # "You are a" offenses
-            ('^jarbas'
+            ('^' + config.bot_name +
              '.*?(?:es|és).*?(?P<what>'
              'cabr(?:a|ã)o|'
              'porco|'
@@ -55,7 +79,7 @@ class ChatViews(object):
              ').*$', self.you_are),
 
             # "Faz-me" offenses
-            ('^jarbas'
+            ('^' + config.bot_name +
              '.*?(?:faz|chupa|mama|lambe|esfrega|massaja).*?(?:'
              'broche|'
              'bico|'
@@ -96,18 +120,22 @@ class ChatViews(object):
         ]
 
     def go_to(self, message, match):
-        op = message.getNotify()
-        msg = '%s, vai tu!' % op
-        return TextMessageProtocolEntity(msg, to=message.getFrom())
+        op = message.getNotify().decode('utf-8')
+        msg = u'%s, vai tu! \U0001F595' % op
+        return TextMessageProtocolEntity(msg.encode('utf-8'), to=message.getFrom())
 
     def you_are(self, message, match):
-        op = message.getNotify()
-        what = match.group('what').lower()
-        msg = '%s, %s és tu!' % (op, what)
-        return TextMessageProtocolEntity(msg, to=message.getFrom())
+        op = message.getNotify().decode('utf-8')
+        what = match.group('what').lower().decode('utf-8')
+        msg = u'%s, %s és tu!  \U0001F595' % (op, what)
+        return TextMessageProtocolEntity(msg.encode('utf-8'), to=message.getFrom())
 
     def make_me(self, message, match):
         op = message.getNotify()
         msg = '%s, mas que falta de educação, eu não faço essas coisas!' % op
         return TextMessageProtocolEntity(msg, to=message.getFrom())
 
+    def greet(self, message, match):
+        op = message.getNotify().decode('utf-8')
+        msg = u'Ola %s! Se precisares de ajuda escreve /ajuda para ver uma lista de comandos \U0001F603' % op
+        return TextMessageProtocolEntity(msg.encode('utf-8'), to=message.getFrom())
