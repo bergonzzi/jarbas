@@ -103,7 +103,7 @@ cinema_sources = {
         'url': 'http://mag.sapo.pt/cinema/salas/cinema-city-alvalade',
         'name': 'Cinema City Alvalade',
         'synonyms':
-            ['alvalade']
+            ['alvalade', 'city alvalade', 'alvalade city']
     },
     'campo pequeno': {
         'url': 'http://mag.sapo.pt/cinema/salas/cinema-city-campo-pequeno',
