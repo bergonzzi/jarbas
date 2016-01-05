@@ -31,7 +31,7 @@ class ChatViews(object):
 
             # "Vai-te" offenses
             ('^' + config.bot_name +
-             '.*?vai.*?(?:'
+             '.*?(?:vai|p(?:o|ó)|p(?:a|á)|para).*?(?:'
              'caralho|'
              'merda|'
              'puta.*?pariu|'
