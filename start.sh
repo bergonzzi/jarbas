@@ -2,6 +2,6 @@
 
 while IFS='' read -r line || [[ -n "$line" ]]; do
     export ${line}
-done < opt/auth.conf
+done < opt/$1
 
 python src/server.py
