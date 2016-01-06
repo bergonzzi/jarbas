@@ -115,7 +115,7 @@ class MediaSender(object):
             logging.info("[Upload progress]%s => %s, %d%% \r" % (os.path.basename(filePath), jid, progress))
 
     def _on_error(self, jid, *args, **kwargs):
-        self.interface_layer.toLower(TextMessageProtocolEntity("{!}", to=jid))
+        self.interface_layer.toLower(TextMessageProtocolEntity("Ooops, encontrei um pequeno problema...", to=jid))
 
     def _get_file_ext(self, url):
         return self.file_extension_regex.findall(url)[0]
