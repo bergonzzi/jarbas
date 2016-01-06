@@ -40,6 +40,7 @@ HELP_TEXT = """Sou um bot um bocado limitado, mas percebo estes comandos:
 /tempo [cidade] - Meteorologia
 /previsao [cidade] - Previsão do tempo
 /cinema [local] - Sessões para o cinema escolhido
+/cinema lista - Lista de cinemas disponíveis
 /search [pesquisa] - Pesquisa no Google e envia o 1º resultado
 /youtube [link] - Envia o video do youtube
 /dados - Lança os dados

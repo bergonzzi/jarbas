@@ -13,7 +13,7 @@ class CinemaViews(object):
     def get_movies(self, message, match):
         arg = match.group('cinema').lower()
 
-        if arg == 'lista':
+        if arg in ('lista', 'list', 'ajuda', 'help'):
             msg = 'Podes ver as sessões disponíveis em qualquer um destes cinemas (por ex. /cinema alegro):\n\n'
 
             for k, v in config.cinema_sources.iteritems():
