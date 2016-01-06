@@ -156,6 +156,12 @@ cinema_sources = {
         'name': 'Cinema NOS Oeiras Parque',
         'synonyms':
             ['oeiras parque', 'oeiras', 'oeiras park']
+    },
+    'nimas': {
+        'url': 'http://mag.sapo.pt/cinema/salas/espaco-nimas',
+        'name': 'Espaço Nimas',
+        'synonyms':
+            ['nimas', 'espaço nimas', 'espaco nimas']
     }
 }
 
