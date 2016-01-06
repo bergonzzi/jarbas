@@ -7,9 +7,18 @@ import config
 class CinemaViews(object):
     def __init__(self, interface_layer):
         self.routes = [
-            ('^' + config.cmd_prefix + '(?:cinemas?|filmes)\s?(?P<cinema>[^$]+)$', self.get_movies)
+            ('^' + config.cmd_prefix + '(?:cinemas?|filmes|sess(?:o|õ)es)\s?(?P<cinema>[^$]+)$', self.get_movies)
         ]
 
     def get_movies(self, message, match):
-        cinema = match.group('cinema').lower()
-        return TextMessageProtocolEntity(movies(cinema), to=message.getFrom())
+        arg = match.group('cinema').lower()
+
+        if arg == 'lista':
+            msg = 'Podes ver as sessões disponíveis em qualquer um destes cinemas (por ex. /cinema alegro):\n\n'
+
+            for k, v in config.cinema_sources.iteritems():
+                msg += v['name'] + '\n'
+        else:
+            msg = movies(arg)
+
+        return TextMessageProtocolEntity(msg, to=message.getFrom())
