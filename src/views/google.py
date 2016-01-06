@@ -20,10 +20,8 @@ class GoogleViews():
         self.url_print_sender = UrlPrintSender(interface_layer)
         self.google_tts_sender = GoogleTtsSender(interface_layer)
         self.routes = [
-            ("^" + config.cmd_prefix + "y(outube)\s(https?:\/\/(?:www\.|m\.)?youtu(?:be.com\/watch\?v=|\.be/)(?P<video_id>[\w-]+)(&\S*)?)$", self.send_yt_video),
-            ("^" + config.cmd_prefix + "t(ts)?\s(?P<text>[^\[]{1,500})\s?\[?(?P<lang>[A-Za-z\-]{2,6})?\]?$", self.send_tts),
-            ("^" + config.cmd_prefix + "s(earch)?\s(?P<term>[^$]+)$", self.google_search),
-            ("^" + config.cmd_prefix + "i(mage)?\s(?P<term>[^$]+)$", self.google_image_search)
+            ("^" + config.cmd_prefix + "y(outube)?\shttps?:\/\/(?:www\.|m\.)?youtu(?:be.com\/watch\?v=|\.be/)(?P<video_id>[\w-]+)(&\S*)?$", self.send_yt_video),
+            ("^" + config.cmd_prefix + "s(earch)?\s(?P<term>[^$]+)$", self.google_search)
         ]
 
     def send_yt_video(self, message, match):

@@ -17,7 +17,7 @@ class SuperViews(object):
         ]
 
     def about(self, message=None, match=None, to=None):
-        self.url_print_sender.send_by_url(message.getFrom(), "https://github.com/joaoricardo000/whatsapp-bot-seed", ABOUT_TEXT)
+        return TextMessageProtocolEntity(ABOUT_TEXT, to=message.getFrom())
 
     def roll(self, message=None, match=None, to=None):
         return TextMessageProtocolEntity("[%d]" % random.randint(1, 6), to=message.getFrom())
@@ -34,26 +34,20 @@ class SuperViews(object):
         return TextMessageProtocolEntity(HELP_TEXT, to=message.getFrom())
 
 
-HELP_TEXT = """ [HELP]
-- Commands
+HELP_TEXT = """Sou um bot um bocado limitado, mas percebo estes comandos:
+
 /ajuda - Mostra esta mensagem
 /tempo [cidade] - Meteorologia
 /previsao [cidade] - Previsão do tempo
-/s(earch) [keyword] - Tira um screenshot do 1º resultado do Google
+/cinema [local] - Sessões para o cinema escolhido
+/search [pesquisa] - Pesquisa no Google e envia o 1º resultado
+/youtube [link] - Envia o video do youtube
 /dados - Lança os dados
 
 Funções automáticas:
 - Url (http://...) - Envia um screenshot do url
-- Url de imagem (jpeg, gif, png) - Envia a imagem
+- Url de imagem (jpg, gif, png) - Envia a imagem
 - Url de video (mp4, webm, youtube) - Envia o video
 """
 
-INACTIVE = """
-/i(mage) [keyword] - I'm lucky with image!
-/t(ts) - Text to speech.
-"""
-
-ABOUT_TEXT = """ [Whatsapp Bot Seed]
-A small open source python framework to create a whatsapp bot, with regex-callback message routing.
-https://github.com/joaoricardo000/whatsapp-bot-seed
-"""
+ABOUT_TEXT = "Sou o Jarbas, o meu mestre é o André Bergonse e estou aqui para te servir."
