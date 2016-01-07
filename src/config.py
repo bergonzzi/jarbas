@@ -93,75 +93,87 @@ max_news = 10
 cinema_sources = {
     'corte ingles': {
         'url': 'http://mag.sapo.pt/cinema/salas/uci-cinemas-el-corte-ingles',
+        'url_short': 'http://is.gd/corteingles',
         'name': 'UCI Cinemas - El Corte Inglés',
         'synonyms':
-            ['uci', 'corte ingles', 'corte inglés']
+            ['uci cinemas el corte inglés', 'uci cinemas el corte ingles', 'uci cinemas', 'uci', 'el corte inglés', 'corte ingles', 'el corte inglés', 'corte inglés']
     },
     'alegro': {
         'url': 'http://mag.sapo.pt/cinema/salas/cinema-city-alegro-alfragide',
+        'url_short': 'http://is.gd/alegro',
         'name': 'Cinema City Alegro Alfragide',
         'synonyms':
-            ['alegro', 'allegro', 'alfragide']
+            ['cinema city alegro alfragide', 'alegro', 'allegro', 'alfragide']
     },
     'alvalade': {
         'url': 'http://mag.sapo.pt/cinema/salas/cinema-city-alvalade',
+        'url_short': 'http://is.gd/alvalade',
         'name': 'Cinema City Alvalade',
         'synonyms':
-            ['alvalade', 'city alvalade', 'alvalade city']
+            ['cinema city alvalade', 'alvalade', 'city alvalade', 'alvalade city']
     },
     'campo pequeno': {
         'url': 'http://mag.sapo.pt/cinema/salas/cinema-city-campo-pequeno',
+        'url_short': 'http://is.gd/campeq',
         'name': 'Cinema City Campo Pequeno',
         'synonyms':
-            ['campo pequeno', 'cp pequeno', 'campo peq', 'cp peq', 'cp. peq', 'cp. peq.', 'c peq', 'campo peq.']
+            ['cinema city campo pequeno', 'cinema city campo peq', 'campo pequeno', 'cp pequeno', 'campo peq', 'cp peq', 'c peq']
     },
     'alvalaxia': {
         'url': 'https://mag.sapo.pt/cinema/salas/cinemas-nos-alvalaxia',
+        'url_short': 'http://is.gd/alvalaxia',
         'name': 'Cinema NOS Alvaláxia',
         'synonyms':
-            ['alvalaxia', 'alvaláxia', 'sporting']
+            ['cinema nos alvalaxia', 'cinema nos alvaláxia', 'alvalaxia', 'alvaláxia', 'sporting']
     },
     'amoreiras': {
         'url': 'http://mag.sapo.pt/cinema/salas/cinemas-nos-amoreiras',
+        'url_short': 'http://is.gd/amoreiras',
         'name': 'Cinema NOS Amoreiras',
         'synonyms':
-            ['amoreiras']
+            ['cinema nos amoreiras', 'amoreiras']
     },
     'colombo': {
         'url': 'http://mag.sapo.pt/cinema/salas/cinemas-nos-colombo',
+        'url_short': 'http://is.gd/colomb',
         'name': 'Cinema NOS Colombo',
         'synonyms':
-            ['colombo']
+            ['cinema colombo', 'colombo']
     },
     'miraflores': {
         'url': 'http://mag.sapo.pt/cinema/salas/cinemas-nos-dolce-vita-miraflores',
+        'url_short': 'http://is.gd/dolcev',
         'name': 'Cinema NOS Dolce Vita Miraflores',
         'synonyms':
-            ['miraflores', 'dolce vita', 'dolce vitta']
+            ['cinema nos dolce vita miraflores', 'cinema dolce vita', 'miraflores', 'dolce vita', 'dolce vitta']
     },
     'vasco da gama': {
         'url': 'http://mag.sapo.pt/cinema/salas/cinemas-nos-vasco-da-gama',
+        'url_short': 'http://is.gd/vgama',
         'name': 'Cinema NOS Vasco da Gama',
         'synonyms':
-            ['vasco da gama', 'vasco gama', 'v gama', 'v. gama']
+            ['cinema nos vasco da gama', 'cinema vasco da gama', 'cinema vasco gama', 'vasco da gama', 'vasco gama', 'v gama']
     },
     'monumental': {
         'url': 'http://mag.sapo.pt/cinema/salas/medeia-monumental',
+        'url_short': 'http://is.gd/monum',
         'name': 'Medeia Monumental',
         'synonyms':
-            ['monumental', 'residence', 'saldanha']
+            ['medeia monumental', 'monumental residence', 'cinema monumental', 'cinema residence', 'residence saldanha', 'monumental saldanha', 'monumental', 'residence', 'saldanha']
     },
     'oeiras parque': {
         'url': 'http://mag.sapo.pt/cinema/salas/cinemas-nos-oeiras-parque',
+        'url_short': 'http://is.gd/oeiras',
         'name': 'Cinema NOS Oeiras Parque',
         'synonyms':
-            ['oeiras parque', 'oeiras', 'oeiras park']
+            ['cinema nos oeiras parque', 'cinema oeiras parque', 'cinema oeiras', 'oeiras parque', 'oeiras', 'oeiras park']
     },
     'nimas': {
         'url': 'http://mag.sapo.pt/cinema/salas/espaco-nimas',
+        'url_short': 'http://is.gd/nimas',
         'name': 'Espaço Nimas',
         'synonyms':
-            ['nimas', 'espaço nimas', 'espaco nimas']
+            ['nimas', 'cinema nimas', 'espaço nimas', 'espaco nimas']
     }
 }
 
