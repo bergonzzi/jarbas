@@ -65,7 +65,7 @@ class ChatViews(object):
              'veado|'
              'l(?:e|é)sbica'
              'fufa|'
-             'caralho(?:te)?|'
+             'caralh(?:ote|inho|ito)?|'
              'colh(?:a|ã)o|'
              'anormal|'
              'est(?:u|ú)pido|'
@@ -73,9 +73,15 @@ class ChatViews(object):
              'idiota|'
              'asno|'
              'anta|'
-             'burro|'
+             'burr(?:o|inho|ito)|'
              'merda|'
-             'c(?:ó|o)c(?:ó|o)'
+             'c(?:ó|o)c(?:ó|o)|'
+             'azeiteiro|'
+             'bimbo|'
+             '(x|ch)unga|'
+             'imbecil|'
+             '(e|i)nerg(ú|u)men(o|e)'
+             'b(á|a)sico|'
              ').*$', self.you_are),
 
             # "Faz-me" offenses
