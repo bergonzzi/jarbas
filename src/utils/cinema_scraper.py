@@ -7,6 +7,7 @@ from lxml import html
 
 def movies(cinema):
     src = ''
+    url_short = ''
     cinema_name = ''
     cinema = ''.join([s.translate(None, string.punctuation) for s in cinema])
 
@@ -14,17 +15,18 @@ def movies(cinema):
         synonyms = [syn.translate(None, string.punctuation) for syn in v['synonyms']]
         if cinema in synonyms:
             src = v['url']
+            url_short = ' (' + v['url_short'] + ')'
             cinema_name = v['name']
 
     logging.debug(src)
 
-    r = requests.get(src)
+    r = requests.get(src, headers={'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.106 Safari/537.36'})
     tree = html.fromstring(r.content)
 
     all_movies = tree.xpath('//ul[@class="unstyled column-group gutters poster-list internal"]/li')
     movie_list = {}
     msg = ''
-    intro = cinema_name + ':\n\n'
+    intro = cinema_name + url_short + ':\n\n'
     version = ''
     subject = ''
     duration = ''
@@ -74,4 +76,4 @@ def movies(cinema):
                 values['duration'].encode('utf-8'),
                 values['sessions'].encode('utf-8'))
 
-    return intro + msg
+    return intro + msg.strip()
