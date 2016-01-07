@@ -1,3 +1,4 @@
+import string
 import logging
 import requests
 import config
@@ -7,9 +8,11 @@ from lxml import html
 def movies(cinema):
     src = ''
     cinema_name = ''
+    cinema = ''.join([s.translate(None, string.punctuation) for s in cinema])
 
     for k, v in config.cinema_sources.iteritems():
-        if cinema in v['synonyms']:
+        synonyms = [syn.translate(None, string.punctuation) for syn in v['synonyms']]
+        if cinema in synonyms:
             src = v['url']
             cinema_name = v['name']
 
