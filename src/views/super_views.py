@@ -37,18 +37,18 @@ class SuperViews(object):
 HELP_TEXT = """Sou um bot um bocado limitado, mas percebo estes comandos:
 
 /ajuda - Mostra esta mensagem
-/tempo [cidade] - Meteorologia
-/previsao [cidade] - Previsão do tempo
-/cinema [local] - Sessões para o cinema escolhido
+/tempo cidade - Meteorologia
+/previsao cidade - Previsão do tempo
+/cinema local - Sessões para o cinema escolhido
 /cinema lista - Lista de cinemas disponíveis
-/search [pesquisa] - Pesquisa no Google e envia o 1º resultado
-/youtube [link] - Envia o video do youtube
+/url link - Envia um screenshot do site
+/search pesquisa - Pesquisa no Google e envia o 1º resultado
+/youtube link - Envia o video do youtube
 /dados - Lança os dados
 
 Funções automáticas:
-- Url (http://...) - Envia um screenshot do url
 - Url de imagem (jpg, gif, png) - Envia a imagem
-- Url de video (mp4, webm, youtube) - Envia o video
+- Url de video (mp4, webm) - Envia o video
 """
 
 ABOUT_TEXT = "Sou o Jarbas, o meu mestre é o André Bergonse e estou aqui para te servir."
