@@ -117,6 +117,10 @@ class ChatViews(object):
              'mama(s)?|'
              'marmelo(s)?|'
              ').*$', self.make_me),
+
+            # Compliments
+            # Hardcoded bot name, for some reason can't concatenate vars in this pattern
+            (r'^(?=.*\bjarbas\b)(?=.*\b(fixe|espectacular|fant(á|a)stico|extraordin(á|a)rio|magn(í|i)fico|inteligente|esperto|amigo|amig(á|a)vel|elegante|brutal|bom|perfeito|(ó|o)ptimo|am(á|a)vel|grande|generoso|(ú|u)nico|precioso|bonito|lindo|forte|belo|f(á|a)cil|especial|brilhante|estonteante|(ú|u)til|agrad(á|a)vel|simp(á|a)tico)).*$', self.thanks)
         ]
 
     def go_to(self, message, match):
@@ -139,3 +143,10 @@ class ChatViews(object):
         op = message.getNotify().decode('utf-8')
         msg = u'Ola %s! Se precisares de ajuda escreve /ajuda para ver uma lista de comandos \U0001F603' % op
         return TextMessageProtocolEntity(msg.encode('utf-8'), to=message.getFrom())
+
+    def thanks(self, message, match):
+        op = message.getNotify()
+        # what = match.group(1).lower().decode('utf-8')
+        # msg = u'%s, obrigado, tu também és %s' % (op, what)
+        msg = 'Obrigado %s!' % op
+        return TextMessageProtocolEntity(msg, to=message.getFrom())
