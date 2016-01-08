@@ -41,6 +41,8 @@ HELP_TEXT = """Sou um bot um bocado limitado, mas percebo estes comandos:
 /previsao cidade - Previsão do tempo
 /cinema local - Sessões para o cinema escolhido
 /cinema lista - Lista de cinemas disponíveis
+/procurafilme filme - Procura de filmes
+/filme título - Mostra resumo do filme
 /url link - Envia um screenshot do site
 /search pesquisa - Pesquisa no Google e envia o 1º resultado
 /youtube link - Envia o video do youtube
