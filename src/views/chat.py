@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import random
 from yowsup.layers.protocol_messages.protocolentities import TextMessageProtocolEntity
 import config
 
@@ -41,7 +42,7 @@ class ChatViews(object):
 
             # "You are a" offenses
             ('^' + config.bot_name +
-             '[\s,-](?:es|és).*?(?P<what>'
+             '.*?(?:es|és|continuas|sejas|foste|eras|fosses).*?(?P<what>'
              'cabr(?:a|ã)o|'
              'porco|'
              'fdp|'
@@ -86,7 +87,7 @@ class ChatViews(object):
 
             # "Faz-me" offenses
             ('^' + config.bot_name +
-             '[\s,-](?:faz|chupa|mama|lambe|esfrega|massaja).*?(?:'
+             '.*?(?:faz|chupa|mama|lambe|esfrega|massaja).*?(?P<what>'
              'broche|'
              'bico|'
              'mamada|'
@@ -142,7 +143,16 @@ class ChatViews(object):
 
     def make_me(self, message, match):
         op = message.getNotify()
-        msg = '%s, mas que falta de educação, eu não faço essas coisas!' % op
+        what = match.group('what').lower()
+        answers = [
+            'Mas que falta de educação %s, eu não faço essas coisas!' % op,
+            '%s? Onde é que aprendeste isso?' % what.capitalize(),
+            'Que classe %s... que classe!' % op,
+            'Acho que o meu mestre não gostar disso %s!' % op,
+            'Só pensas em %s, deves estar muito só...' % what
+        ]
+
+        msg = random.choice(answers)
         return TextMessageProtocolEntity(msg, to=message.getFrom())
 
     def greet(self, message, match):
