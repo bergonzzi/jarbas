@@ -18,7 +18,7 @@ class SuperViews(object):
         ]
 
     def about(self, message=None, match=None, to=None):
-        return TextMessageProtocolEntity(ABOUT_TEXT.encode('utf-8'), to=message.getFrom())
+        return TextMessageProtocolEntity(ABOUT_TEXT, to=message.getFrom())
 
     def roll(self, message=None, match=None, to=None):
         msg = u'\U0001F3B2... %d' % random.randint(1, 6)
@@ -69,4 +69,4 @@ Funções automáticas:
 - Url de video (mp4, webm) - Envia o video
 """
 
-ABOUT_TEXT = u"Sou o Jarbas, um \U0001F47E, o meu mestre é o André Bergonse e estou aqui principalmente para o servir."
+ABOUT_TEXT = "Sou o bot Jarbas, o meu mestre é o André Bergonse e estou aqui principalmente para o servir."
