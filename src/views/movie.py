@@ -40,7 +40,7 @@ class MovieViews(object):
 
     def _not_found(self, title):
         msg = 'Não encontrei nenhum filme com o título "%s", vê lá se não te enganaste a escrever - experimenta ' \
-              'separar palavras, remover pontuação ou o ano do filme, por exemplo.' % title
+              'separar palavras, remover pontuação ou o ano do filme, por exemplo. Ah, e usa o título original!' % title
         return msg
 
     def search_movie(self, message, match):
