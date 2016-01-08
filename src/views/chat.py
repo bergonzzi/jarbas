@@ -7,7 +7,7 @@ class ChatViews(object):
     def __init__(self, interface_layer):
         self.routes = [
             # Greetings
-            ('^(' + config.bot_name + ').*?(?:'
+            ('^(' + config.bot_name + ')[\s,-](?:'
              'ol(?:á|a)|'
              'oi|'
              'boas|'
@@ -27,11 +27,11 @@ class ChatViews(object):
              'boa(?:s)? noite(?:s)?|'
              '(?:tudo|td) (b(?:e|o)m|fixe)|'
              '(?:como|cm) vais'
-             ')(\s' + config.bot_name + ').*$', self.greet),
+             ')[\s,-](' + config.bot_name + ').*$', self.greet),
 
             # "Vai-te" offenses
             ('^' + config.bot_name +
-             '.*?(?:vai|p(?:o|ó)|p(?:a|á)|para).*?(?:'
+             '[\s,-](?:vai|p(?:o|ó)|p(?:a|á)|para).*?(?:'
              'caralho|'
              'merda|'
              'puta.*?pariu|'
@@ -41,7 +41,7 @@ class ChatViews(object):
 
             # "You are a" offenses
             ('^' + config.bot_name +
-             '.*?(?:es|és).*?(?P<what>'
+             '[\s,-](?:es|és).*?(?P<what>'
              'cabr(?:a|ã)o|'
              'porco|'
              'fdp|'
@@ -80,13 +80,13 @@ class ChatViews(object):
              'bimbo|'
              '(x|ch)unga|'
              'imbecil|'
-             '(e|i)nerg(ú|u)men(o|e)'
-             'b(á|a)sico|'
+             '(e|i)nerg(ú|u)men(o|e)|'
+             'b(á|a)sico'
              ').*$', self.you_are),
 
             # "Faz-me" offenses
             ('^' + config.bot_name +
-             '.*?(?:faz|chupa|mama|lambe|esfrega|massaja).*?(?:'
+             '[\s,-](?:faz|chupa|mama|lambe|esfrega|massaja).*?(?:'
              'broche|'
              'bico|'
              'mamada|'
@@ -100,7 +100,7 @@ class ChatViews(object):
              'verga(?:lho)?|'
              'cacete|'
              'besugo|'
-             'bola(s)?|'
+             'bola(?:s)?|'
              'colh(?:o|õ)es|'
              'tomate(s)?|'
              'test(?:i|í)culos|'
@@ -121,7 +121,7 @@ class ChatViews(object):
              'teta(s)?|'
              'tetinha(s)?|'
              'mama(s)?|'
-             'marmelo(s)?|'
+             'marmelo(s)?'
              ').*$', self.make_me),
 
             # Compliments
