@@ -1,11 +1,13 @@
 # -*- coding: utf-8 -*-
 from yowsup.layers.protocol_messages.protocolentities import TextMessageProtocolEntity
 from tmdb3 import set_key, set_cache, searchMovie, Movie
+import numbers
 import config
 
 
 class MovieViews(object):
     def __init__(self, interface_layer):
+        self.movie_list = []
         self.api_key = set_key(config.tmdb_api_key)
         self.routes = [
             ('^' + config.cmd_prefix + '(?:searchmovie|(?:procura|pesquisa)r?\s?filme)\s(?P<movie>[^$]+)$', self.search_movie),
@@ -47,8 +49,7 @@ class MovieViews(object):
         msg = ''
         intro = 'Filmes encontrados para "%s"\n\n' % match.group('movie')
         more_results = ''
-        end_tip = '\n\nPara ver os detalhes de um filme, copia o nome da lista acima e envia "/filme titulo" numa mensagem ' \
-                  '(não incluas o ano).'
+        end_tip = '\nPara ver os detalhes de um filme, basta indicar o número, por ex. "/filme 3".'
 
         if not res:
             msg = self._not_found(match.group('movie'))
@@ -68,7 +69,8 @@ class MovieViews(object):
                     except AttributeError:
                         releasedate = movie.releasedate.encode('utf-8')
 
-                    msg += '%s (%s)\n' % (title, releasedate)
+                    msg += '%d. %s (%s)\n' % (num, title, releasedate)
+                    self.movie_list.append(title)
                 elif num == config.max_movies + 1:
                     more_results = '...'
 
@@ -78,7 +80,20 @@ class MovieViews(object):
 
     def get_movie(self, message, match):
         arg = match.group('movie').lower()
-        msg = self._get_movie_details(searchMovie(arg))
+
+        # If user specified a number then fetch it from the last search
+        if unicode(arg).isnumeric():
+            movie_num = int(arg) - 1
+
+            try:
+                movie_title = self.movie_list[movie_num]
+                msg = self._get_movie_details(searchMovie(movie_title))
+            except IndexError:
+                msg = 'O número %d não está na lista!' % movie_num
+
+        # Otherwise do a search by title
+        else:
+            msg = self._get_movie_details(searchMovie(arg))
 
         if not msg:
             msg = self._not_found(match.group('movie'))
