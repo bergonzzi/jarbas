@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-import logging
 from yowsup.layers.protocol_messages.protocolentities import TextMessageProtocolEntity
 from tmdb3 import set_key, set_cache, searchMovie
 import config
