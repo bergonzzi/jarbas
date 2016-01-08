@@ -12,7 +12,7 @@ class SuperViews(object):
         self.routes = [
             ("^" + config.cmd_prefix + "(?:help|ajuda)", self.help),
             ("^" + config.cmd_prefix + "(?:about|sobre)", self.about),
-            ("^" + config.cmd_prefix + "(?:roll|dados)", self.roll),
+            ("^" + config.cmd_prefix + "(?:roll|dado(?:s)?)", self.roll),
             ("^" + config.cmd_prefix + "(?P<evenOrOdd>even|odd)$", self.even_or_odd),
         ]
 
@@ -20,7 +20,8 @@ class SuperViews(object):
         return TextMessageProtocolEntity(ABOUT_TEXT, to=message.getFrom())
 
     def roll(self, message=None, match=None, to=None):
-        return TextMessageProtocolEntity("[%d]" % random.randint(1, 6), to=message.getFrom())
+        msg = u'\U0001F3B2... %d' % random.randint(1, 6)
+        return TextMessageProtocolEntity(msg.encode('utf-8'), to=message.getFrom())
 
     def even_or_odd(self, message=None, match=None, to=None):
         is_odd = len(match.group("evenOrOdd")) % 2
