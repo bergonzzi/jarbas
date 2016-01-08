@@ -127,7 +127,7 @@ class ChatViews(object):
 
             # Compliments
             # Hardcoded bot name, for some reason can't concatenate vars in this pattern
-            (r'^(?=.*\bjarbas\b)(?=.*\b(fixe|espectacular|fant(á|a)stico|extraordin(á|a)rio|magn(í|i)fico|inteligente|esperto|amigo|amig(á|a)vel|elegante|brutal|bom|perfeito|(ó|o)ptimo|am(á|a)vel|grande|generoso|(ú|u)nico|precioso|bonito|lindo|forte|belo|f(á|a)cil|especial|brilhante|estonteante|(ú|u)til|agrad(á|a)vel|simp(á|a)tico)).*$', self.thanks)
+            (r'^(?=.*\bjarbas\b)(?=.*\b(maior|fixe|espectacular|fant(á|a)stico|extraordin(á|a)rio|magn(í|i)fico|inteligente|esperto|amigo|amig(á|a)vel|elegante|brutal|bom|perfeito|(ó|o)ptimo|am(á|a)vel|grande|generoso|(ú|u)nico|precioso|bonito|lindo|forte|belo|f(á|a)cil|especial|brilhante|estonteante|(ú|u)til|agrad(á|a)vel|simp(á|a)tico)).*$', self.thanks)
         ]
 
     def go_to(self, message, match):
