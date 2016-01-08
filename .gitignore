@@ -2,3 +2,4 @@
 .idea
 auth*.conf
 media/*
+cache/*

@@ -69,7 +69,7 @@ bot_name = 'jarbas'
 # (audio recordings, printscreens, media and youtube videos)
 media_storage_path = os.path.abspath(os.path.join(os.path.dirname( __file__ ), '..', 'media/')) + '/'
 
-# API settings for openweathermap
+# Open Weather Map settings
 try:
     owm_api_key = os.environ['OPENWEATHER_API_KEY']
 except KeyError:
@@ -77,6 +77,15 @@ except KeyError:
 
 owm_lang = 'pt'
 owm_unit = 'celsius'
+
+# The Movie DB settings
+try:
+    tmdb_api_key = os.environ['TMDB_API_KEY']
+except KeyError:
+    sys.exit('Missing environment variables TMDB_API_KEY!')
+
+max_movies = 21
+movie_cache = os.path.abspath(os.path.join(os.path.dirname( __file__ ), '..', 'cache/')) + '/tmdb.cache'
 
 # Pageres settings for website screenshots
 pageres_params = '1440x1800 --no-crop'
