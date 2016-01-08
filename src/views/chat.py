@@ -127,7 +127,10 @@ class ChatViews(object):
 
             # Compliments
             # Hardcoded bot name, for some reason can't concatenate vars in this pattern
-            (r'^(?=.*\bjarbas\b)(?=.*\b(maior|fixe|porreiro|espectacular|fant(á|a)stico|extraordin(á|a)rio|magn(í|i)fico|inteligente|esperto|amigo|amig(á|a)vel|elegante|brutal|bom|perfeito|(ó|o)ptimo|am(á|a)vel|grande|generoso|(ú|u)nico|precioso|bonito|lindo|forte|belo|f(á|a)cil|especial|brilhante|estonteante|(ú|u)til|agrad(á|a)vel|simp(á|a)tico)).*$', self.thanks)
+            (r'^(?=.*\bjarbas\b)(?=.*\b(maior|fixe|porreiro|espectacular|fant(á|a)stico|extraordin(á|a)rio|magn(í|i)fico|inteligente|esperto|amigo|amig(á|a)vel|elegante|brutal|bom|perfeito|(ó|o)ptimo|am(á|a)vel|grande|generoso|(ú|u)nico|precioso|bonito|lindo|forte|belo|especial|brilhante|estonteante|(ú|u)til|agrad(á|a)vel|simp(á|a)tico)).*$', self.thanks),
+
+            # Others
+            (r'^(?=.*\bqual\b)(?=.*\bsignificado\b(?=.*\bvida)).*$', self.meaning_life)
         ]
 
     def go_to(self, message, match):
@@ -142,18 +145,18 @@ class ChatViews(object):
         return TextMessageProtocolEntity(msg.encode('utf-8'), to=message.getFrom())
 
     def make_me(self, message, match):
-        op = message.getNotify()
-        what = match.group('what').lower()
+        op = message.getNotify().decode('utf-8')
+        what = match.group('what').lower().decode('utf-8')
         answers = [
-            'Mas que falta de educação %s, eu não faço essas coisas!' % op,
-            '%s? Onde é que aprendeste isso?' % what.capitalize(),
-            'Que classe %s... que classe!' % op,
-            'Acho que o meu mestre não gostar disso %s!' % op,
-            'Só pensas em %s, deves estar muito só...' % what
+            u'Mas que falta de educação %s, eu não faço essas coisas! \U0001F612' % op,
+            u'%s? Onde é que aprendeste isso?' % what.capitalize(),
+            u'Que classe %s... que classe!' % op,
+            u'Acho que o meu mestre não gostar disso %s! \U0001F612' % op,
+            u'%s, só pensas em %s, queres falar sobre isso?' % (op, what),
+            u'%s, é isso que esperas de um bot?' % op
         ]
-
         msg = random.choice(answers)
-        return TextMessageProtocolEntity(msg, to=message.getFrom())
+        return TextMessageProtocolEntity(msg.encode('utf-8'), to=message.getFrom())
 
     def greet(self, message, match):
         op = message.getNotify().decode('utf-8')
@@ -162,7 +165,18 @@ class ChatViews(object):
 
     def thanks(self, message, match):
         op = message.getNotify()
-        # what = match.group(1).lower().decode('utf-8')
-        # msg = u'%s, obrigado, tu também és %s' % (op, what)
-        msg = 'Obrigado %s!' % op
+        what = match.group(1).lower().decode('utf-8')
+        answers = [
+            u'Obrigado %s, às vezes também és %s \U0001F60A' % (op, what),
+            u'Obrigado %s (mas sabes que sou um bot não sabes?) \U0001F60A' % op,
+            u'Até me fazes corar %s, afinal sabes dizer coisas bonitas \U0001F60A' % op,
+            u'Se não fosse um bot também podia sentir isso por ti %s \U0001F60A' % op,
+            u'Obrigado %s, embora já soubesse \U0001F60A' % op,
+            u'Obrigado %s, se dissesses isso mais vezes talvez as pessoas gostassem mais de ti \U0001F60A' % op,
+        ]
+        msg = random.choice(answers)
+        return TextMessageProtocolEntity(msg.encode('utf-8'), to=message.getFrom())
+
+    def meaning_life(self, message, match):
+        msg = '42'
         return TextMessageProtocolEntity(msg, to=message.getFrom())
