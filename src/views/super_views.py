@@ -13,29 +13,43 @@ class SuperViews(object):
             ("^" + config.cmd_prefix + "(?:help|ajuda)", self.help),
             ("^" + config.cmd_prefix + "(?:about|sobre)", self.about),
             ("^" + config.cmd_prefix + "(?:roll|dado(?:s)?)", self.roll),
-            ("^" + config.cmd_prefix + "(?P<evenOrOdd>even|odd)$", self.even_or_odd),
+            ("^" + config.cmd_prefix + "(?P<evenodd>even|odd)$", self.even_or_odd),
+            ("^" + config.cmd_prefix + "(moeda(?:s)?|coin(?:s)?)\s(?P<moeda>cara|coroa)+$", self.coin),
         ]
 
     def about(self, message=None, match=None, to=None):
-        return TextMessageProtocolEntity(ABOUT_TEXT, to=message.getFrom())
+        return TextMessageProtocolEntity(ABOUT_TEXT.encode('utf-8'), to=message.getFrom())
 
     def roll(self, message=None, match=None, to=None):
         msg = u'\U0001F3B2... %d' % random.randint(1, 6)
         return TextMessageProtocolEntity(msg.encode('utf-8'), to=message.getFrom())
 
     def even_or_odd(self, message=None, match=None, to=None):
-        is_odd = len(match.group("evenOrOdd")) % 2
+        is_odd = len(match.group("evenodd")) % 2
         num = random.randint(1, 10)
         if (is_odd and num % 2) or (not is_odd and not num % 2):
-            return TextMessageProtocolEntity("[%d]\nYou win." % num, to=message.getFrom())
+            return TextMessageProtocolEntity("%d - You win." % num, to=message.getFrom())
         else:
-            return TextMessageProtocolEntity("[%d]\nYou lose!" % num, to=message.getFrom())
+            return TextMessageProtocolEntity("%d - You lose!" % num, to=message.getFrom())
+
+    def coin(self, message, match):
+        op = message.getNotify().decode('utf-8')
+        coins = ['cara', 'coroa']
+        choice = match.group('moeda').lower()
+        result = random.choice(coins)
+
+        if result == choice:
+            msg = u'%s, escolheste "%s" e saiu "%s", ganhaste! \U0001F600' % (op, choice, result)
+        else:
+            msg = u'%s, escolheste "%s" mas saiu "%s", perdeste! \U0001F641' % (op, choice, result)
+
+        return TextMessageProtocolEntity(msg.encode('utf-8'), to=message.getFrom())
 
     def help(self, message=None, match=None, to=None):
-        return TextMessageProtocolEntity(HELP_TEXT, to=message.getFrom())
+        return TextMessageProtocolEntity(HELP_TEXT.encode('utf-8'), to=message.getFrom())
 
 
-HELP_TEXT = """Sou um bot um bocado limitado, mas percebo estes comandos:
+HELP_TEXT = u"""Sou um \U0001F47E um bocado limitado, mas percebo estes comandos:
 
 /ajuda - Mostra esta mensagem
 /tempo cidade - Meteorologia
@@ -48,10 +62,11 @@ HELP_TEXT = """Sou um bot um bocado limitado, mas percebo estes comandos:
 /search pesquisa - Pesquisa no Google e envia o 1º resultado
 /youtube link - Envia o video do youtube
 /dados - Lança os dados
+/moeda cara/coroa - Moeda ao ar
 
 Funções automáticas:
 - Url de imagem (jpg, gif, png) - Envia a imagem
 - Url de video (mp4, webm) - Envia o video
 """
 
-ABOUT_TEXT = "Sou o Jarbas, o meu mestre é o André Bergonse e estou aqui para te servir."
+ABOUT_TEXT = u"Sou o Jarbas, um \U0001F47E, o meu mestre é o André Bergonse e estou aqui principalmente para o servir."
