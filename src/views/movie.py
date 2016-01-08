@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from yowsup.layers.protocol_messages.protocolentities import TextMessageProtocolEntity
-from tmdb3 import set_key, set_cache, searchMovie
+from tmdb3 import set_key, set_cache, searchMovie, Movie
 import config
 
 
@@ -16,17 +16,21 @@ class MovieViews(object):
 
     def _get_movie_details(self, results):
         try:
-            res = results[0]
-            title = res.title.encode('utf-8')
-            releasedate = res.releasedate.strftime('%Y-%m-%d').encode('utf-8')
+            movie = results[0]
+            title = movie.title.encode('utf-8')
+            overview = movie.overview.encode('utf-8')
+            releasedate = movie.releasedate.strftime('%Y-%m-%d').encode('utf-8')
+            trailer = '\n\nTrailer: %s' % Movie(movie.id).youtube_trailers[0].geturl()
 
-            if res.tagline.encode('utf-8'):
-                tagline = 'Tagline: %s\n\n' % res.tagline.encode('utf-8')
+            if movie.tagline.encode('utf-8'):
+                tagline = 'Tagline: %s\n\n' % movie.tagline.encode('utf-8')
             else:
                 tagline = ''
 
-            overview = res.overview.encode('utf-8')
-            msg = '%s (%s)\n\n%sOverview: %s' % (title, releasedate, tagline, overview)
+            if not trailer:
+                trailer = ''
+
+            msg = '%s (%s)\n\n%sOverview: %s%s' % (title, releasedate, tagline, overview, trailer)
         except IndexError:
             msg = False
 
@@ -44,7 +48,7 @@ class MovieViews(object):
         intro = 'Filmes encontrados para "%s"\n\n' % match.group('movie')
         more_results = ''
         end_tip = '\n\nPara ver os detalhes de um filme, copia o nome da lista acima e envia "/filme titulo" numa mensagem ' \
-                  '(não incluas ano).'
+                  '(não incluas o ano).'
 
         if not res:
             msg = self._not_found(match.group('movie'))
