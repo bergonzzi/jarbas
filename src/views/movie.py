@@ -89,7 +89,7 @@ class MovieViews(object):
                 movie_title = self.movie_list[movie_num]
                 msg = self._get_movie_details(searchMovie(movie_title))
             except IndexError:
-                msg = 'O número %d não está na lista!' % movie_num
+                msg = 'O número %d não está na lista!' % (movie_num + 1)
 
         # Otherwise do a search by title
         else:
