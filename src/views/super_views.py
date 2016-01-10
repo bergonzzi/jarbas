@@ -60,6 +60,7 @@ HELP_TEXT = u"""Sou um \U0001F47E um bocado limitado, mas percebo estes comandos
 /filme título - Mostra resumo do filme
 /url link - Envia um screenshot do site
 /search pesquisa - Pesquisa no Google e envia o 1º resultado
+/imagem pesquisa - Pesquisa imagens e envia o 1º resultado
 /youtube link - Envia o video do youtube
 /dados - Lança os dados
 /moeda cara/coroa - Moeda ao ar
