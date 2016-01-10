@@ -67,6 +67,7 @@ HELP_TEXT = u"""Sou um \U0001F47E um bocado limitado, mas percebo estes comandos
 Funções automáticas:
 - Url de imagem (jpg, gif, png) - Envia a imagem
 - Url de video (mp4, webm) - Envia o video
+- Url de gif - Envia o video
 """
 
 ABOUT_TEXT = "Sou o bot Jarbas, o meu mestre é o André Bergonse e estou aqui principalmente para o servir."

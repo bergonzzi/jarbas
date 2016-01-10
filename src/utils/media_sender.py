@@ -207,3 +207,31 @@ class GoogleTtsSender(AudioSender):
     def _build_file_path(self, text):
         id = hashlib.md5(text).hexdigest()
         return ''.join([self.storage_path, id, ".mp3"])
+
+
+class GifsSender(VideoSender):
+    """
+        Convert gifs to video and sends it
+    """
+
+    def _download_file(self, full_url):
+        id = hashlib.md5(full_url.encode('utf-8')).hexdigest()
+        gif_path = self._build_gif_path(id)
+        mp4_path = self._build_mp4_path(id)
+        if not os.path.isfile(mp4_path):
+            cmd = 'curl -s -o "%s" "%s"' % (gif_path, full_url)
+            logging.info(cmd)
+            p = subprocess.Popen(cmd, shell=True, cwd=self.storage_path)
+            p.wait()
+            cmd = 'ffmpeg -nostats -loglevel 0 -i "%s" -vcodec mpeg4 -acodec aac "%s"' % (gif_path, mp4_path)
+            logging.info(cmd)
+            p = subprocess.Popen(cmd, shell=True, cwd=self.storage_path)
+            p.wait()
+            os.remove(gif_path)
+        return mp4_path
+
+    def _build_gif_path(self, video_id):
+        return ''.join([self.storage_path, video_id, ".gif"])
+
+    def _build_mp4_path(self, video_id):
+        return ''.join([self.storage_path, video_id, ".mp4"])
