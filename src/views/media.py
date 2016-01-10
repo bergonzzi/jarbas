@@ -5,6 +5,7 @@
     Handles the media url messages with utilities classes for it.
 """
 from utils.media_sender import ImageSender, VideoSender, UrlPrintSender, GifsSender
+import logging
 import config
 
 
@@ -19,13 +20,20 @@ class MediaViews():
         self.gif_sender = GifsSender(interface_layer)
         self.routes = [
             ("https?:\/\/(?:[\w\-]+\.)+[a-z]{2,6}(?:\/[^\/#?]+)+\.(?:jpe?g|png)($|\?[^\s]+$)", self.send_image),
-            ("https?:\/\/(?:[\w\-]+\.)+[a-z]{2,6}(?:\/[^\/#?]+)+\.(?:mp4|webm)($|\?[^\s]+$)", self.send_video),
+            ("https?:\/\/(?:[\w\-]+\.)+[a-z]{2,6}(?:\/[^\/#?]+)+\.(?P<ext>mp4|webm|gifv)($|\?[^\s]+$)", self.send_video),
             ("https?:\/\/(?:[\w\-]+\.)+[a-z]{2,6}(?:\/[^\/#?]+)+\.(?:gif)($|\?[^\s]+(\s.*)?$)", self.send_gif),
             ("^" + config.cmd_prefix + "url\s(?P<url>(https?:\/\/|www\.)[^$]+)$", self.send_url_print),
         ]
 
     def send_video(self, message, match):
-        self.video_sender.send_by_url(jid=message.getFrom(), file_url=message.getBody())
+        extension = match.group('ext')
+
+        if extension == 'gifv':
+            file_url = message.getBody().replace(extension, 'mp4')
+        else:
+            file_url = message.getBody()
+
+        self.video_sender.send_by_url(jid=message.getFrom(), file_url=file_url)
 
     def send_image(self, message, match):
         self.image_sender.send_by_url(jid=message.getFrom(), file_url=message.getBody())
