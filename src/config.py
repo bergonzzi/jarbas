@@ -42,8 +42,8 @@ import logging
 log_format = '_%(filename)s_\t[%(levelname)s] [%(asctime)-15s] %(message)s'
 logging_level = logging.INFO
 
-# Authentication parameters are fetched from env variables
-# This avoid storing them in a file
+# Whatsapp authentication parameters are fetched from env variables
+# This avoids storing them in a file
 try:
     num = os.environ['WHATSAPP_NUM']
     pw = os.environ['WHATSAPP_PW']
@@ -86,6 +86,12 @@ except KeyError:
 
 max_movies = 21
 movie_cache = os.path.abspath(os.path.join(os.path.dirname( __file__ ), '..', 'cache/')) + '/tmdb.cache'
+
+# Bing API for images
+try:
+    bing_api_key = os.environ['BING_API_KEY']
+except KeyError:
+    sys.exit('Missing environment variables BING_API_KEY!')
 
 # Pageres settings for website screenshots
 pageres_params = '1440x1800 --no-crop'
