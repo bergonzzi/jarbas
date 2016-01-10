@@ -85,7 +85,7 @@ except KeyError:
     sys.exit('Missing environment variables TMDB_API_KEY!')
 
 max_movies = 21
-movie_cache = os.path.abspath(os.path.join(os.path.dirname( __file__ ), '..', 'cache/')) + '/tmdb.cache'
+movie_cache_path = os.path.abspath(os.path.join(os.path.dirname( __file__ ), '..', 'cache/')) + '/tmdb.cache'
 
 # Bing API for images
 try:

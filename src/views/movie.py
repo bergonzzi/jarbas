@@ -1,6 +1,4 @@
 # -*- coding: utf-8 -*-
-import logging
-import datetime
 from yowsup.layers.protocol_messages.protocolentities import TextMessageProtocolEntity
 from tmdb3 import set_key, set_cache, searchMovie, Movie
 import config
@@ -15,7 +13,7 @@ class MovieViews(object):
             ('^' + config.cmd_prefix + '(?:movie|filme)\s(?P<movie>[^$]+)$', self.get_movie)
         ]
 
-        set_cache(filename=config.movie_cache)
+        set_cache(filename=config.movie_cache_path)
 
     def _get_movie_details(self, movie_id):
         try:

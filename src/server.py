@@ -6,7 +6,8 @@
 
     The top layer of the stack is the RouteLayer (from route.py).
 """
-import logging, time
+import os
+import logging
 from yowsup.layers import YowLayerEvent, YowParallelLayer
 from yowsup.layers.auth import AuthError
 from yowsup.layers.network import YowNetworkLayer
@@ -48,6 +49,13 @@ if __name__ == "__main__":
 
     logging.basicConfig(stream=sys.stdout, level=config.logging_level, format=config.log_format)
     server = YowsupEchoStack(config.auth)
+
+    if not os.path.exists(config.media_storage_path):
+        os.makedirs(config.media_storage_path)
+
+    if not os.path.exists(config.movie_cache_path):
+        os.makedirs(config.movie_cache_path)
+
     while True:
         # In case of disconnect, keeps connecting...
         server.start()
