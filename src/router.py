@@ -20,6 +20,7 @@ from views.cinema import CinemaViews
 from views.chat import ChatViews
 from views.movie import MovieViews
 from views.bing import BingViews
+from views.currency import CurrencyViews
 
 
 # Basic regex routes
@@ -69,6 +70,9 @@ class RouteLayer(YowInterfaceLayer):
 
         # Bing views to handle image search
         routes.extend(BingViews(self).routes)
+
+        # Currency views for exchange rates
+        routes.extend(CurrencyViews(self).routes)
 
         self.views = [(re.compile(pattern, re.IGNORECASE), callback) for pattern, callback in routes]
 
