@@ -3,6 +3,7 @@ from utils.media_sender import UrlPrintSender
 from yowsup.layers.protocol_messages.protocolentities.message_text import TextMessageProtocolEntity
 import random
 import config
+import emoji
 
 
 class SuperViews(object):
@@ -21,7 +22,7 @@ class SuperViews(object):
         return TextMessageProtocolEntity(ABOUT_TEXT, to=message.getFrom())
 
     def roll(self, message=None, match=None, to=None):
-        msg = u'\U0001F3B2... %d' % random.randint(1, 6)
+        msg = emoji.emojize(':game_die:... %d' % random.randint(1, 6))
         return TextMessageProtocolEntity(msg.encode('utf-8'), to=message.getFrom())
 
     def even_or_odd(self, message=None, match=None, to=None):
@@ -39,9 +40,9 @@ class SuperViews(object):
         result = random.choice(coins)
 
         if result == choice:
-            msg = u'%s, escolheste "%s" e saiu "%s", ganhaste! \U0001F600' % (op, choice, result)
+            msg = emoji.emojize('%s, escolheste "%s" e saiu "%s", ganhaste! :grinning:' % (op, choice, result), use_aliases=True)
         else:
-            msg = u'%s, escolheste "%s" mas saiu "%s", perdeste! \U0001F641' % (op, choice, result)
+            msg = emoji.emojize('%s, escolheste "%s" mas saiu "%s", perdeste! :confused:' % (op, choice, result), use_aliases=True)
 
         return TextMessageProtocolEntity(msg.encode('utf-8'), to=message.getFrom())
 
@@ -54,6 +55,7 @@ HELP_TEXT = u"""Sou um \U0001F47E um bocado limitado, mas percebo estes comandos
 /ajuda - Mostra esta mensagem
 /tempo cidade - Meteorologia
 /previsao cidade - Previsão do tempo
+/noticias (desporto) - Últimas notícias gerais ou desporto apenas
 /cinema local - Sessões para o cinema escolhido
 /cinema lista - Lista de cinemas disponíveis
 /procurafilme filme - Procura de filmes

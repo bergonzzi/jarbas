@@ -5,3 +5,4 @@ yowsup2==2.4.2
 gTTS==1.0.6
 pyshorteners==0.5.8
 tmdb3==0.7.2
+emoji==0.3.9

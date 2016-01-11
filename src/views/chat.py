@@ -2,6 +2,7 @@
 import random
 from yowsup.layers.protocol_messages.protocolentities import TextMessageProtocolEntity
 import config
+import emoji
 
 
 class ChatViews(object):
@@ -135,46 +136,46 @@ class ChatViews(object):
 
     def go_to(self, message, match):
         op = message.getNotify().decode('utf-8')
-        msg = u'%s, vai tu! \U0001F595' % op
+        msg = emoji.emojize('%s, vai tu! :reversed_hand_with_middle_finger_extended:' % op)
         return TextMessageProtocolEntity(msg.encode('utf-8'), to=message.getFrom())
 
     def you_are(self, message, match):
         op = message.getNotify().decode('utf-8')
         what = match.group('what').lower().decode('utf-8')
-        msg = u'%s, %s és tu!  \U0001F595' % (op, what)
+        msg = emoji.emojize('%s, %s és tu! :reversed_hand_with_middle_finger_extended:' % (op, what))
         return TextMessageProtocolEntity(msg.encode('utf-8'), to=message.getFrom())
 
     def make_me(self, message, match):
         op = message.getNotify().decode('utf-8')
-        what = match.group('what').lower().decode('utf-8')
+        what = match.group('what').lower()
         answers = [
-            u'Mas que falta de educação %s, eu não faço essas coisas! \U0001F612' % op,
-            u'%s? Onde é que aprendeste isso?' % what.capitalize(),
-            u'Que classe %s... que classe!' % op,
-            u'Acho que o meu mestre não gostar disso %s! \U0001F612' % op,
-            u'%s, só pensas em %s, queres falar sobre isso?' % (op, what),
-            u'%s, é isso que esperas de um bot?' % op
+            'Mas que falta de educação %s, eu não faço essas coisas!' % op,
+            '%s? Onde é que aprendeste isso?' % what.capitalize(),
+            'Que classe %s... que classe!' % op,
+            'Acho que o meu mestre não gostar disso %s!' % op,
+            '%s, só pensas em %s, queres falar sobre isso?' % (op, what),
+            '%s, é isso que esperas de um bot?' % op
         ]
         msg = random.choice(answers)
-        return TextMessageProtocolEntity(msg.encode('utf-8'), to=message.getFrom())
+        return TextMessageProtocolEntity(msg, to=message.getFrom())
 
     def greet(self, message, match):
         op = message.getNotify().decode('utf-8')
-        msg = u'Ola %s! Se precisares de ajuda escreve /ajuda para ver uma lista de comandos \U0001F603' % op
+        msg = emoji.emojize('Ola %s! Se precisares de ajuda escreve /ajuda para ver uma lista de comandos :smiley:' % op)
         return TextMessageProtocolEntity(msg.encode('utf-8'), to=message.getFrom())
 
     def thanks(self, message, match):
-        op = message.getNotify()
-        what = match.group(1).lower().decode('utf-8')
+        op = message.getNotify().decode('utf-8')
+        what = match.group(1).lower()
         answers = [
-            u'Obrigado %s, às vezes também és %s \U0001F60A' % (op, what),
-            u'Obrigado %s (mas sabes que sou um bot não sabes?) \U0001F60A' % op,
-            u'Até me fazes corar %s, afinal sabes dizer coisas bonitas \U0001F60A' % op,
-            u'Se não fosse um bot também podia sentir isso por ti %s \U0001F60A' % op,
-            u'Obrigado %s, embora já soubesse \U0001F60A' % op,
-            u'Obrigado %s, se dissesses isso mais vezes talvez as pessoas gostassem mais de ti \U0001F60A' % op,
+            'Obrigado %s, às vezes também és %s :blush:' % (op, what),
+            'Obrigado %s (mas sabes que sou um bot não sabes?) :blush:' % op,
+            'Até me fazes corar %s, afinal sabes dizer coisas bonitas :blush:' % op,
+            'Se não fosse um bot também podia sentir isso por ti %s :blush:' % op,
+            'Obrigado %s, embora já soubesse :blush:' % op,
+            'Obrigado %s, se dissesses isso mais vezes talvez as pessoas gostassem mais de ti :blush:' % op,
         ]
-        msg = random.choice(answers)
+        msg = emoji.emojize(random.choice(answers), use_aliases=True)
         return TextMessageProtocolEntity(msg.encode('utf-8'), to=message.getFrom())
 
     def meaning_life(self, message, match):
