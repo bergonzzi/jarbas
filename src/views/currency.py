@@ -69,8 +69,8 @@ class CurrencyViews(object):
         code = match.group('code').upper()
 
         if code.lower() in ('ajuda', 'help', 'lista', 'list'):
-            msg = 'Aqui está a lista de moedas disponíveis para conversão. Os dados são do BCE e foram actualizados ' \
-                  'em {time}):\n\n'.format(time=self.last_update)
+            msg = 'Aqui está a lista de moedas disponíveis para conversão (fonte BCE, actualizado ' \
+                  'em {time}:\n\n'.format(time=self.last_update)
 
             for k, v in self.rates.iteritems():
                 msg += '%s - %s (%s)\n' % (k, v['name'], v['symbol'])
