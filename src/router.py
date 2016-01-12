@@ -91,11 +91,13 @@ class RouteLayer(YowInterfaceLayer):
 
     def handle_callback(self, callback, message, match):
         try:
-            # log message request
-            if message.isGroupMessage():
-                logging.info("(GROUP)[%s]-[%s]\t%s" % (message.getParticipant(), message.getFrom(), message.getBody()))
-            else:
-                logging.info("(PVT)[%s]\t%s" % (message.getFrom(), message.getBody()))
+            # A bit hacky but avoids logging every single message since the nazi route matches everything
+            if not callback.__name__ == 'nazi':
+                # log message request
+                if message.isGroupMessage():
+                    logging.info("(GROUP)[%s]-[%s]\t%s" % (message.getParticipant(), message.getFrom(), message.getBody()))
+                else:
+                    logging.info("(PVT)[%s]\t%s" % (message.getFrom(), message.getBody()))
             # execute callback request
             data = callback(message, match)
             if data: self.toLower(data)  # if callback returns a message entity, sends it.
