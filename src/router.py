@@ -21,6 +21,7 @@ from views.chat import ChatViews
 from views.movie import MovieViews
 from views.bing import BingViews
 from views.currency import CurrencyViews
+from views.grammar_nazi import GrammarViews
 
 
 # Basic regex routes
@@ -73,6 +74,9 @@ class RouteLayer(YowInterfaceLayer):
 
         # Currency views for exchange rates
         routes.extend(CurrencyViews(self).routes)
+
+        # View for grammar corrections
+        routes.extend(GrammarViews(self).routes)
 
         self.views = [(re.compile(pattern, re.IGNORECASE), callback) for pattern, callback in routes]
 
