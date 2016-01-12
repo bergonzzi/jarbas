@@ -22,6 +22,7 @@ from views.movie import MovieViews
 from views.bing import BingViews
 from views.currency import CurrencyViews
 from views.grammar_nazi import GrammarViews
+from views.wiki import WikiViews
 
 
 # Basic regex routes
@@ -75,7 +76,10 @@ class RouteLayer(YowInterfaceLayer):
         # Currency views for exchange rates
         routes.extend(CurrencyViews(self).routes)
 
-        # View for grammar corrections
+        # View for wiki search
+        routes.extend(WikiViews(self).routes)
+
+        # View for grammar corrections, needs to come last as it's a catch-all pattern
         routes.extend(GrammarViews(self).routes)
 
         self.views = [(re.compile(pattern, re.IGNORECASE), callback) for pattern, callback in routes]
