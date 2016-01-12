@@ -136,13 +136,13 @@ class ChatViews(object):
 
     def go_to(self, message, match):
         op = message.getNotify().decode('utf-8')
-        msg = emoji.emojize('%s, vai tu! :reversed_hand_with_middle_finger_extended:' % op)
+        msg = emoji.emojize(u'%s, vai tu! :reversed_hand_with_middle_finger_extended:' % op)
         return TextMessageProtocolEntity(msg.encode('utf-8'), to=message.getFrom())
 
     def you_are(self, message, match):
         op = message.getNotify().decode('utf-8')
         what = match.group('what').lower().decode('utf-8')
-        msg = emoji.emojize('%s, %s és tu! :reversed_hand_with_middle_finger_extended:' % (op, what))
+        msg = emoji.emojize(u'%s, %s és tu! :reversed_hand_with_middle_finger_extended:' % (op, what))
         return TextMessageProtocolEntity(msg.encode('utf-8'), to=message.getFrom())
 
     def make_me(self, message, match):
@@ -161,19 +161,19 @@ class ChatViews(object):
 
     def greet(self, message, match):
         op = message.getNotify().decode('utf-8')
-        msg = emoji.emojize('Ola %s! Se precisares de ajuda escreve /ajuda para ver uma lista de comandos :smiley:' % op)
+        msg = emoji.emojize(u'Ola %s! Se precisares de ajuda escreve /ajuda para ver uma lista de comandos :smiley:' % op, use_aliases=True)
         return TextMessageProtocolEntity(msg.encode('utf-8'), to=message.getFrom())
 
     def thanks(self, message, match):
         op = message.getNotify().decode('utf-8')
         what = match.group(1).lower()
         answers = [
-            'Obrigado %s, às vezes também és %s :blush:' % (op, what),
-            'Obrigado %s (mas sabes que sou um bot não sabes?) :blush:' % op,
-            'Até me fazes corar %s, afinal sabes dizer coisas bonitas :blush:' % op,
-            'Se não fosse um bot também podia sentir isso por ti %s :blush:' % op,
-            'Obrigado %s, embora já soubesse :blush:' % op,
-            'Obrigado %s, se dissesses isso mais vezes talvez as pessoas gostassem mais de ti :blush:' % op,
+            u'Obrigado %s, às vezes também és %s :blush:' % (op, what),
+            u'Obrigado %s (mas sabes que sou um bot não sabes?) :blush:' % op,
+            u'Até me fazes corar %s, afinal sabes dizer coisas bonitas :blush:' % op,
+            u'Se não fosse um bot também podia sentir isso por ti %s :blush:' % op,
+            u'Obrigado %s, embora já soubesse :blush:' % op,
+            u'Obrigado %s, se dissesses isso mais vezes talvez as pessoas gostassem mais de ti :blush:' % op,
         ]
         msg = emoji.emojize(random.choice(answers), use_aliases=True)
         return TextMessageProtocolEntity(msg.encode('utf-8'), to=message.getFrom())
