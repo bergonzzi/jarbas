@@ -66,6 +66,8 @@ HELP_TEXT = u"""Sou um \U0001F47E um bocado limitado, mas percebo estes comandos
 /youtube link - Envia o video do youtube
 /dados - Lança os dados
 /moeda cara/coroa - Moeda ao ar
+/cambio (USD..) - Taxas da câmbio, /cambio lista para ver todas as moedas
+/wiki termo - Pesquisa na Wikipedia por "termo"
 
 Funções automáticas:
 - Url de imagem (jpg, gif, png) - Envia a imagem
