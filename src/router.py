@@ -23,6 +23,7 @@ from views.bing import BingViews
 from views.currency import CurrencyViews
 from views.grammar_nazi import GrammarViews
 from views.wiki import WikiViews
+from views.fanan_norris import FananViews
 
 
 # Basic regex routes
@@ -78,6 +79,9 @@ class RouteLayer(YowInterfaceLayer):
 
         # View for wiki search
         routes.extend(WikiViews(self).routes)
+
+        # View for fanan quotes
+        routes.extend(FananViews(self).routes)
 
         # View for grammar corrections, needs to come last as it's a catch-all pattern
         routes.extend(GrammarViews(self).routes)
