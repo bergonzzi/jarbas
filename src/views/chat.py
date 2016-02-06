@@ -147,17 +147,17 @@ class ChatViews(object):
 
     def make_me(self, message, match):
         op = message.getNotify().decode('utf-8')
-        what = match.group('what').lower()
+        what = match.group('what').lower().decode('utf-8')
         answers = [
-            'Mas que falta de educação %s, eu não faço essas coisas!' % op,
-            '%s? Onde é que aprendeste isso?' % what.capitalize(),
-            'Que classe %s... que classe!' % op,
-            'Acho que o meu mestre não gostar disso %s!' % op,
-            '%s, só pensas em %s, queres falar sobre isso?' % (op, what),
-            '%s, é isso que esperas de um bot?' % op
+            u'Mas que falta de educação %s, eu não faço essas coisas!' % op,
+            u'%s? Onde é que aprendeste isso?' % what.capitalize(),
+            u'Que classe %s... que classe!' % op,
+            u'Acho que o meu mestre não gostar disso %s!' % op,
+            u'%s, só pensas em %s, queres falar sobre isso?' % (op, what),
+            u'%s, é isso que esperas de um bot?' % op
         ]
         msg = random.choice(answers)
-        return TextMessageProtocolEntity(msg, to=message.getFrom())
+        return TextMessageProtocolEntity(msg.encode('utf-8'), to=message.getFrom())
 
     def greet(self, message, match):
         op = message.getNotify().decode('utf-8')

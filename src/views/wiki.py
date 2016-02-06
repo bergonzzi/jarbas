@@ -7,7 +7,7 @@ import config
 class WikiViews(object):
     def __init__(self, interface_layer):
         self.routes = [
-            ('^' + config.cmd_prefix + '(?:w|wiki|wikipedoa)\s(?P<term>[^$]+)$', self.wiki)
+            ('^' + config.cmd_prefix + '(?:w|wiki|wikipedia)\s(?P<term>[^$]+)$', self.wiki)
         ]
 
     def wiki(self, message, match):
