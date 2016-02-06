@@ -1,24 +1,29 @@
-# Ubuntu Upstart script template
-author "Your name"
+# Place this script in /etc/init/jarbas.conf
+# Check it with init-checkconf /etc/init/jarbas.conf
+# Control service with sudo service <servicename> <control>
+
+author "Andre Bergonse"
 description "Upstart script for whatsapp bot"
 
 start on runlevel [2345]
 stop on shutdown
 respawn
 
-# Set the user under which you want to your bot to run
 setuid bot
 setgid bot
 
-# Set the home dir for your bot
-chdir /home/bot/your_bot
+chdir /home/bot/jarbas_meo
 
-# Customize your start command as needed
 script
-    echo $$ > bot.pid
-    exec ./start.sh auth/auth.conf >> log/bot.out.log 2>&1
+    echo $$ > jarbas.pid
+    exec ./start.sh auth/auth_meo.conf >> log/jarbas.out.log 2>&1
+end script
+
+pre-start script
+    exec echo "`date`    Started jarbas service" >> log/jarbas-service.log
 end script
 
 pre-stop script
-    rm bot.pid
+    exec echo "`date`    Stopped jarbas service" >> log/jarbas-service.log
+    rm jarbas.pid
 end script
